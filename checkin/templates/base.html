@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@themepixels">
+    <meta name="twitter:creator" content="@themepixels">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bracket">
+    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="twitter:image" content="http://themepixels.me/bracket/img/bracket-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://themepixels.me/bracket">
+    <meta property="og:title" content="Bracket">
+    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+
+    <meta property="og:image" content="http://themepixels.me/bracket/img/bracket-social.png">
+    <meta property="og:image:secure_url" content="http://themepixels.me/bracket/img/bracket-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Design Hub Check-in System.">
+    <meta name="author" content="Bogere Siraje">
+
+    <!-- vendor css -->
+    <link href="/static/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="/static/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="/static/lib/jquery-switchbutton/jquery.switchButton.css" rel="stylesheet">
+    <link href="/static/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+    <link href="/static/lib/chartist/chartist.css" rel="stylesheet">
+
+    <!-- Bracket CSS -->
+    <link rel="stylesheet" href="/static/css/bracket.css">
+    {% block head %}
+    {% endblock head %}
+</head>
+
+<body>
+    <div class="br-logo"><a href="/"><span>Design Hub</span></a></div>
+    <div class="br-sideleft overflow-y-auto">
+        <label class="sidebar-label pd-x-15 mg-t-20"></label>
+        <div class="br-sideleft-menu">
+            <a href="/" class="br-menu-link {% if request.path == '/business/dashboard' %} active {% endif %}">
+                <div class="br-menu-item">
+                    <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+                    <span class="menu-item-label">Dashboard</span>
+                </div>
+            </a>
+
+            {% if user.is_staff %}
+            <a href="/users" class="br-menu-link" target="_blank">
+                <div class="br-menu-item">
+                    <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+                    <span class="menu-item-label">Users</span>
+                </div>
+            </a>
+            {% endif %}
+        </div>
+
+        <br>
+    </div>
+
+
+    <div class="br-header">
+        <div class="br-header-left">
+            <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href="/business"><i
+                        class="icon ion-navicon-round"></i></a></div>
+            <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href="/business"><i
+                        class="icon ion-navicon-round"></i></a></div>
+        </div>
+        <div class="br-header-right">
+            <nav class="nav">
+                <div class="dropdown">
+                    <a href="index.html" class="nav-link nav-link-profile" data-toggle="dropdown">
+                        <span class="logged-name hidden-md-down">
+                            {{ user.first_name }} {{ user.last_name }} ({{ user.username }})
+                        </span>
+                        <img src="../img/img1.jpg" class="wd-32 rounded-circle" alt="">
+                        <span class="square-10 bg-success"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-header wd-200">
+                        <ul class="list-unstyled user-profile-nav">
+                            <li><a href="/logout"><i class="icon ion-power"></i> Log Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="br-mainpanel">
+        {% block content %}
+        {% endblock content %}
+
+        <footer class="br-footer">
+            <div class="footer-left">
+                <div class="mg-b-2">Copyright &copy; 2020. All Rights Reserved.</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/lib/jquery/jquery.js"></script>
+    <script src="/static/lib/popper.js/popper.js"></script>
+    <script src="/static/lib/bootstrap/bootstrap.js"></script>
+    <script src="/static/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="/static/lib/moment/moment.js"></script>
+    <script src="/static/lib/jquery-ui/jquery-ui.js"></script>
+    <script src="/static/lib/jquery-switchbutton/jquery.switchButton.js"></script>
+    <script src="/static/lib/peity/jquery.peity.js"></script>
+    <script src="/static/lib/chartist/chartist.js"></script>
+    <script src="/static/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
+    <script src="/static/lib/d3/d3.js"></script>
+    <script src="/static/lib/rickshaw/rickshaw.min.js"></script>
+
+
+    <script src="/static/js/bracket.js"></script>
+    <script src="/static/js/ResizeSensor.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+    <script>
+        $(function () {
+            'use strict'
+
+            // FOR DEMO ONLY
+            $(window).resize(function () {
+                minimizeMenu();
+            });
+
+            minimizeMenu();
+
+            function minimizeMenu() {
+                if (window.matchMedia('(min-width: 992px)').matches && window.matchMedia('(max-width: 1299px)').matches) {
+                    // show only the icons and hide left menu label by default
+                    $('.menu-item-label,.menu-item-arrow').addClass('op-lg-0-force d-lg-none');
+                    $('body').addClass('collapsed-menu');
+                    $('.show-sub + .br-menu-sub').slideUp();
+                } else if (window.matchMedia('(min-width: 1300px)').matches && !$('body').hasClass('collapsed-menu')) {
+                    $('.menu-item-label,.menu-item-arrow').removeClass('op-lg-0-force d-lg-none');
+                    $('body').removeClass('collapsed-menu');
+                    $('.show-sub + .br-menu-sub').slideDown();
+                }
+            }
+        });
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

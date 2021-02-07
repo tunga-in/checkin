@@ -30,4 +30,10 @@ def logout_user(request: HttpRequest):
 
 @login_required(login_url='/login')
 def home(request: HttpRequest):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'this_user': request.user })
+
+
+
+@login_required(login_url='/login')
+def users(request: HttpRequest):
+    return render(request, 'users/list.html')
