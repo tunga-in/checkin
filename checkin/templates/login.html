@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Design Hub Checkin">
+    <meta name="Bogere Siraje" content="ThemePixels">
+
+    <title>Design Hub Checkin</title>
+
+    <!-- vendor css -->
+    <link href="/static/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+
+    <!-- Bracket CSS -->
+    <link rel="stylesheet" href="/static/css/bracket.css">
+</head>
+
+<body>
+
+    <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
+
+        <form class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base" method="post">
+            {% csrf_token %}
+            <div class="signin-logo tx-center tx-28 tx-bold tx-inverse">
+                <span class="tx-normal"></span>
+                Design Hub Checkin System
+                <span class="tx-normal"></span>
+            </div>
+
+            <div class="form-group">
+                {% if message %}
+                <p class="text-danger">{{ message }}</p>
+                {% endif %}
+                <input type="text" name="username" class="form-control" placeholder="Enter your username" value="{{username}}" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn btn-info btn-block">Sign In</button>
+
+        </form>
+    </div>
+
+    <script src="/static/lib/jquery/jquery.js"></script>
+    <script src="/static/lib/popper.js/popper.js"></script>
+    <script src="/static/lib/bootstrap/bootstrap.js"></script>
+
+</body>
+
+</html>
