@@ -29,7 +29,6 @@
                 </div>
                 <div class="pd-x-15 pd-b-15">
                     
-                    {% if data %}
                         <table class="table table-striped" id="datatable1">
                             <thead style="background-color:#CCC;">
                                 <th>No</th>
@@ -43,26 +42,23 @@
                                 <th>#</th>
                             </thead>
                             <tbody>
-                                {% for item in data %}
+                                {% for item in entrants %}
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
-                                        <td>{{ item.user.first_name }}</td>
-                                        <td>{{ item.user.last_name }}</td>
-                                        <td>{{ item.user.tel_number }}</td>
-                                        <td>{{ item.user.company }}</td>
-                                        <td>{{ item.user.id_number }}</td>
-                                        <td>{{ item.timestamp }}</td>
-                                        <td>{{ item.reading }}</td>
+                                        <td>{{ item.first_name }}</td>
+                                        <td>{{ item.last_name }}</td>
+                                        <td>{{ item.tel_number }}</td>
+                                        <td>{{ item.company }}</td>
+                                        <td>{{ item.id_number }}</td>
+                                        <td>{{ item.last_entry.timestamp }}</td>
+                                        <td>{{ item.last_entry.reading }}</td>
                                         <td>
-                                            <a href="/entrants/{{item.user.id}}/add_entry" class="btn btn-sm btn-outline-dark">Add Entry</a>
+                                            <a href="/entrants/{{item.id}}/add_entry" class="btn btn-sm btn-outline-dark">Add Entry</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
-                    {% else %}
-                        <tr><p class="text-center">No entrants yet.</p></tr>
-                    {% endif %}
                     
                 </div>
             </div><!-- card -->

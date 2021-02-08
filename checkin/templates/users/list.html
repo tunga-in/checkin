@@ -22,28 +22,24 @@
                 </div>
                 <div class="pd-x-15 pd-b-15">
                     
-                    {% if products %}
-                        <table class="table table-striped">
+                    {% if users %}
+                        <table class="table table-striped" id="datatable1">
                             <thead style="background-color:#CCC;">
                                 <th>No</th>
-                                <th>Photo</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
                                 <th>#</th>
                             </thead>
                             <tbody>
-                                {% for item in products %}
+                                {% for item in users %}
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
-                                        <td><img src="/media/{{ item.photo }}" style="height:40px; width:40px;"/></td>
-                                        <td>{{ item.name }}</td>
-                                        <td><a href="/business/catalog/category/{{item.id}}/products">{{item.category.name}}</a></td>
+                                        <td>{{ item.first_name }}</td>
+                                        <td>{{ item.last_name }}</td>
+                                        <td>{{ item.username }}</td>
                                         <td>
-                                            <a href="/business/catalog/product/{{item.id}}/edit" class="btn btn-sm btn-outline-success">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a href="/business/catalog/product/{{item.id}}/delete" class="btn btn-sm btn-outline-danger">Delete</a>
+                                            <a href="/users/{{item.id}}/edit" class="btn btn-sm btn-outline-success">Edit</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
